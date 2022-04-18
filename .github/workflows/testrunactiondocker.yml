@@ -14,6 +14,7 @@ jobs:
         with:
           image: docker:20.10.3
           run: |
+            echo " This test the output version from the docker image" 
             echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
       - name: Test the output
         uses: actions/github-script@v3
@@ -21,7 +22,7 @@ jobs:
           script: |
             const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
             if (dockerVersion !== '20.10.3') {
-              core.setFailed(`Smoke Test Failed`);
+              core.setFailed(`Output Test Failed`);
             }
   volume-mount-test:
     runs-on: ubuntu-latest
@@ -36,6 +37,7 @@ jobs:
           image: docker
           options: -v ${{ github.workspace }}:/work
           run: |
+            echo " Testing the output from the mounted file"
             echo "::set-output name=file-contents::`cat /work/someFile`"
       - name: Check if file contents match
         uses: actions/github-script@v3
