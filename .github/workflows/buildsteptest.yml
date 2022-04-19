@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume
+      - name: verifyactualpath
+        run: |
+          echo "We are here ${pwd}"
+          ls -al
       - uses: docker/build-push-action@v2
         with:
           context: baseimage/Dockerfile.maven
