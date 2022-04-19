@@ -1,3 +1,7 @@
+Run Docker Action
+run a specific step in docker.
+run an image built by a previous step.
+
 Typical Use Case
 - name: Checkout 
   uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
